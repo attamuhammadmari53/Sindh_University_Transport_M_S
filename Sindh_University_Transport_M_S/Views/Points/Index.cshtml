@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Sindh_University_Transport_M_S.Models.Point>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+
+<h2 align="center">Index</h2>
+
+<p align="center">
+    <u> @Html.ActionLink("Create New", "Create")</u>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Point ID")
+        </th>
+        <th>
+            @Html.DisplayName("Type")
+        </th>
+        <th>
+            @Html.DisplayName("Number")
+        </th>
+        <th>
+            @Html.DisplayName("Photo")
+        </th>
+        <th>
+            @Html.DisplayName("Starting Time")
+        </th>
+        <th>
+            @Html.DisplayName("Ending Time")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shift)
+        </th>
+        <th>
+            @Html.DisplayName("Location Name")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_Number)
+        </td>
+        <td>
+            <img src="@Url.Content(item.P_Photo)" width="130" height="70" />
+           <!--@Html.DisplayFor(modelItem => item.P_Photo) --> 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_S_Timing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_E_Timing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shift)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.Name)
+        </td>
+        <td>
+            <u> @Html.ActionLink("Edit", "Edit", new { id = item.Id }) </u> &nbsp; | 
+               <u> @Html.ActionLink("Details", "Details", new { id = item.Id }) </u> &nbsp;  | 
+     <u> @Html.ActionLink("Delete", "Delete", new { id = item.Id }) </u>
+</td>
+    </tr>
+}
+
+</table>

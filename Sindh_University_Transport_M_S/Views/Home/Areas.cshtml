@@ -1,0 +1,20 @@
+﻿
+@model IEnumerable<Sindh_University_Transport_M_S.Models.Area>
+@{
+    ViewBag.Title = "Areas";
+    Layout = "~/Views/User_Layout.cshtml";
+}
+<html>
+<head>
+
+</head>
+<body>
+    <a>Areas</a>
+    @foreach (var item in Model)
+    {
+        @Html.ActionLink(item.Name,"Locations",new { id=item.Id})
+    }
+
+
+</body>
+</html>

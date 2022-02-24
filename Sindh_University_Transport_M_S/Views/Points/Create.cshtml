@@ -1,0 +1,106 @@
+﻿@model Sindh_University_Transport_M_S.Models.Points_Get
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Create", "Points", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal ">
+        <h2 class="col-md-o">Create</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+                <div class="form-group ">
+                    @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" } )
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.P_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.P_Name, "", new { @class = "text-danger" })
+                    </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.P_Type, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.P_Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.P_Number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.P_Number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.P_Photo, new { type = "file" })
+                    @Html.ValidationMessageFor(model => model.P_Photo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Starting Time", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.P_S_Timing, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.P_S_Timing, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Ending Time", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.P_E_Timing, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.P_E_Timing, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Shift, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Shift, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Shift, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.LocationId, "LocationId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+             <div class="form-group">
+                 <div class="col-md-offset-2 col-md-10">
+                     <input type="submit" value="Create" class="btn btn-default" />
+                 </div>
+             </div>
+    </div>
+}
+
+<div class="col-md-offset-1">
+    <u> @Html.ActionLink("Back to List", "Index")</u>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

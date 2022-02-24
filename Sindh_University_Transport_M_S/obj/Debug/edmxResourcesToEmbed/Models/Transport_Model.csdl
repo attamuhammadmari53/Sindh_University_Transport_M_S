@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Transport_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Transport_ModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="Transport_Model.City" />
+    <EntitySet Name="Areas" EntityType="Transport_Model.Area" />
+    <EntitySet Name="Locations" EntityType="Transport_Model.Location" />
+    <EntitySet Name="Points" EntityType="Transport_Model.Point" />
+    <EntitySet Name="Admins" EntityType="Transport_Model.Admin" />
+    <AssociationSet Name="CityArea" Association="Transport_Model.CityArea">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Area" EntitySet="Areas" />
+    </AssociationSet>
+    <AssociationSet Name="AreaLocation" Association="Transport_Model.AreaLocation">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="LocationPoint" Association="Transport_Model.LocationPoint">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Point" EntitySet="Points" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Areas" Relationship="Transport_Model.CityArea" FromRole="City" ToRole="Area" />
+  </EntityType>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Transport_Model.CityArea" FromRole="Area" ToRole="City" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Locations" Relationship="Transport_Model.AreaLocation" FromRole="Area" ToRole="Location" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Routes" Type="String" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Transport_Model.AreaLocation" FromRole="Location" ToRole="Area" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Points" Relationship="Transport_Model.LocationPoint" FromRole="Location" ToRole="Point" />
+  </EntityType>
+  <EntityType Name="Point">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_Name" Type="String" Nullable="false" />
+    <Property Name="P_Type" Type="String" Nullable="false" />
+    <Property Name="P_Number" Type="String" Nullable="false" />
+    <Property Name="P_Photo" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="false" />
+    <Property Name="P_S_Timing" Type="String" Nullable="false" />
+    <Property Name="P_E_Timing" Type="String" Nullable="false" />
+    <Property Name="Shift" Type="String" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="Transport_Model.LocationPoint" FromRole="Point" ToRole="Location" />
+    <Property Name="LocationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="CityArea">
+    <End Type="Transport_Model.City" Role="City" Multiplicity="1" />
+    <End Type="Transport_Model.Area" Role="Area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Area">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AreaLocation">
+    <End Type="Transport_Model.Area" Role="Area" Multiplicity="1" />
+    <End Type="Transport_Model.Location" Role="Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationPoint">
+    <End Type="Transport_Model.Location" Role="Location" Multiplicity="1" />
+    <End Type="Transport_Model.Point" Role="Point" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Point">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

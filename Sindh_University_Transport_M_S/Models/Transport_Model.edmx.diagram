@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a9978216b5b47419fb580ed65c7ed35" Name="Diagram1" >
+        <EntityTypeShape EntityType="Transport_Model.City" Width="1.5" PointX="0.625" PointY="0.625" />
+        <EntityTypeShape EntityType="Transport_Model.Area" Width="1.5" PointX="3.375" PointY="0.625" />
+        <EntityTypeShape EntityType="Transport_Model.Location" Width="1.5" PointX="5.875" PointY="0.625" />
+        <EntityTypeShape EntityType="Transport_Model.Point" Width="1.5" PointX="8.5" PointY="0.625" />
+        <EntityTypeShape EntityType="Transport_Model.Admin" Width="1.5" PointX="0.625" PointY="3.25" />
+        <AssociationConnector Association="Transport_Model.CityArea" />
+        <AssociationConnector Association="Transport_Model.AreaLocation" />
+        <AssociationConnector Association="Transport_Model.LocationPoint" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

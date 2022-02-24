@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Transport_ModelStoreContainer" CdmEntityContainer="Transport_ModelContainer">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="IsTypeOf(Transport_Model.City)">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="IsTypeOf(Transport_Model.Area)">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(Transport_Model.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Routes" ColumnName="Routes" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Points">
+      <EntityTypeMapping TypeName="IsTypeOf(Transport_Model.Point)">
+        <MappingFragment StoreEntitySet="Points">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+          <ScalarProperty Name="P_Type" ColumnName="P_Type" />
+          <ScalarProperty Name="P_Number" ColumnName="P_Number" />
+          <ScalarProperty Name="P_Photo" ColumnName="P_Photo" />
+          <ScalarProperty Name="P_S_Timing" ColumnName="P_S_Timing" />
+          <ScalarProperty Name="P_E_Timing" ColumnName="P_E_Timing" />
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="IsTypeOf(Transport_Model.Admin)">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

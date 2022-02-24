@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Transport_Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Transport_ModelStoreContainer">
+    <EntitySet Name="Cities" EntityType="Transport_Model.Store.Cities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Areas" EntityType="Transport_Model.Store.Areas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="Transport_Model.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Points" EntityType="Transport_Model.Store.Points" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Admins" EntityType="Transport_Model.Store.Admins" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CityArea" Association="Transport_Model.Store.CityArea">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Area" EntitySet="Areas" />
+    </AssociationSet>
+    <AssociationSet Name="AreaLocation" Association="Transport_Model.Store.AreaLocation">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="LocationPoint" Association="Transport_Model.Store.LocationPoint">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Point" EntitySet="Points" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Areas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Routes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Points">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="P_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="P_Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="P_Number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="P_Photo" Type="varchar(max)" Nullable="false" />
+    <Property Name="P_S_Timing" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="P_E_Timing" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Shift" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="CityArea">
+    <End Role="City" Type="Transport_Model.Store.Cities" Multiplicity="1" />
+    <End Role="Area" Type="Transport_Model.Store.Areas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Area">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AreaLocation">
+    <End Role="Area" Type="Transport_Model.Store.Areas" Multiplicity="1" />
+    <End Role="Location" Type="Transport_Model.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationPoint">
+    <End Role="Location" Type="Transport_Model.Store.Locations" Multiplicity="1" />
+    <End Role="Point" Type="Transport_Model.Store.Points" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Point">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

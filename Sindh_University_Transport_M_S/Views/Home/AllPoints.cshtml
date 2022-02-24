@@ -1,0 +1,33 @@
+﻿@using PagedList.Mvc 
+@model IList<Sindh_University_Transport_M_S.Models.Point>
+@{
+    ViewBag.Title = "";
+    Layout = null;
+    //Layout = "~/Views/User_Layout.cshtml";
+}
+
+
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@Url.Content(item.P_Photo)" width="250" height="250" />
+            </div>
+            <div class="col-md-8">
+                <p><b>Location:</b>@item.Location.Name &nbsp;&nbsp;&nbsp;<b>Point Type:</b>@item.P_Type.</p>
+                <p><b>Shift:</b>@item.Shift &nbsp;&nbsp;&nbsp; <b>Point Number:</b>@item.P_Number</p>
+                <p><b>Arrival Time</b>@item.P_S_Timing &nbsp;&nbsp;&nbsp; <b>Return Time:</b>@item.P_E_Timing</p>
+                <p><b>Route Description:</b>@item.Location.Routes</p>
+            </div>
+        </div>
+        
+    }
+
+@*<div>
+    @Html.PagedListPager(Model,page =>Url.Action("Index","Home", new { page,search=Request.QueryString["search"]}), new PagedListRenderOptions { DisplayPageCountAndCurrentLocation=true})
+</div>*@
+
+
+
+<h2>AllPoints</h2>
+

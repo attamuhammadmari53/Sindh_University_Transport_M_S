@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row divmargin">
+            <div class="col-md-12 img-rounded" style="background-color:skyblue; margin-top:4px">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active">@Html.ActionLink(" Admin Profile", "Index", " Admin", null, new { @class = "glyphicon glyphicon-user", style = "Color:White" })</li>
+                    <li><a href="@Url.Action("Index","Cities")" style="color:white"><img src="~/Content/icon/iconfinder_6_2300997.png" style="margin-bottom:5px; margin-right:5px"/>Cities</a></li>
+                    <li><a href="@Url.Action("Index","Areas")" style="color:white"><img src="~/Content/icon/iconfinder_area-chart_1608513 (1).png" style="margin-bottom:5px; margin-right:5px" />Areas</a></li>
+                   <li>@Html.ActionLink("Location","Index","Locations",null, new { @class="glyphicon glyphicon-map-marker"})</li>
+                     <li><a href="@Url.Action("Index","Points")"><img src="~/Content/icon/iconfinder_aiga_bus_134180.png" />Points</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
